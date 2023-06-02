@@ -3,6 +3,9 @@ import { getHost } from "@/util/get-host";
 const apiHost = getHost();
 
 export default async function Buggy() {
+  if (process.env.CI) {
+    return <h1>CI</h1>;
+  }
   const response = await fetch(`${apiHost}/api/error`, {
     next: { revalidate: 0 },
   });

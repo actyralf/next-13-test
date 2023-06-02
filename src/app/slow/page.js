@@ -4,6 +4,9 @@ import { getHost } from "@/util/get-host";
 const apiHost = getHost();
 
 export default async function Slow() {
+  if (process.env.CI) {
+    return <h1>CI</h1>;
+  }
   const res = await fetch(`${apiHost}/api/slow`, {
     next: { revalidate: 0 },
   });
