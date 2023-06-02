@@ -1,5 +1,9 @@
+import { getHost } from "@/util/get-host";
+
+const apiHost = getHost();
+
 export default async function Buggy() {
-  const response = await fetch("http://localhost:3000/api/error", {
+  const response = await fetch(`${apiHost}/api/error`, {
     next: { revalidate: 0 },
   });
   if (!response.ok) throw new Error("Error!");

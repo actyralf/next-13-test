@@ -1,7 +1,10 @@
 import styles from "../page.module.css";
+import { getHost } from "@/util/get-host";
+
+const apiHost = getHost();
 
 export default async function Slow() {
-  const res = await fetch("http://localhost:3000/api/slow", {
+  const res = await fetch(`${apiHost}/api/slow`, {
     next: { revalidate: 0 },
   });
   const data = await res.json();
